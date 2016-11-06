@@ -5,6 +5,7 @@ function preload() {
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 }
+var stars;
 var player;
 var platforms;
 function create() {
@@ -27,7 +28,7 @@ function create() {
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-var stars;
+
     stars = game.add.group();
     stars.enableBody = true;
     //  Here we'll create 12 of them evenly spaced apart
