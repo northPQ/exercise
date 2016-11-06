@@ -5,10 +5,10 @@ function preload() {
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 }
-var platforms;
-var player;
+
 function create() {
-    game.add.sprite(0, 0, 'star');
+   var platforms;
+   var player;
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'sky');
     platforms = game.add.group();
@@ -31,6 +31,8 @@ function create() {
 var cursors = game.input.keyboard.createCursorKeys();
 var stars;
 function update() {
+    var cursors = game.input.keyboard.createCursorKeys();
+    var stars;
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     player.body.velocity.x = 0;
     if (cursors.left.isDown) {
