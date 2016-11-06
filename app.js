@@ -26,8 +26,23 @@ function create() {
     player.body.collideWorldBounds = true;
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
-}
+
 var stars;
+    stars = game.add.group();
+    stars.enableBody = true;
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++) {
+        //  Create a star inside of the 'stars' group
+        var star = stars.create(i * 70, 0, 'star');
+        //  Let gravity do its thing
+        star.body.gravity.y = 6;
+        //  This just gives each star a slightly random bounce value
+        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+}
+var score = 0;
+var scoreText;
+
 function update() {
     var cursors = game.input.keyboard.createCursorKeys();
     
@@ -52,17 +67,7 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
         player.body.velocity.y = -350;
     }
-    stars = game.add.group();
-    stars.enableBody = true;
-    //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 12; i++) {
-        //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 70, 0, 'star');
-        //  Let gravity do its thing
-        star.body.gravity.y = 6;
-        //  This just gives each star a slightly random bounce value
-        star.body.bounce.y = 0.7 + Math.random() * 0.2;
-    }
+    
     game.physics.arcade.collide(stars, platforms);
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
     function collectStar(player, star) {
@@ -70,8 +75,8 @@ function update() {
         score += 10;
         scoreText.text = 'Score: ' + score;
     }
-    var score = 0;
-    var scoreText;
+    
+    
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 }
 //# sourceMappingURL=app.js.map
