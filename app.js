@@ -8,6 +8,8 @@ function preload() {
 var stars;
 var player;
 var platforms;
+var score = 0;
+ var scoreText;
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'sky');
@@ -40,9 +42,10 @@ function create() {
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 }
-var score = 0;
-var scoreText;
+
+
 
 function update() {
     var cursors = game.input.keyboard.createCursorKeys();
@@ -71,6 +74,7 @@ function update() {
     
     game.physics.arcade.collide(stars, platforms);
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
+   
     function collectStar(player, star) {
         star.kill();
         score += 10;
@@ -78,6 +82,6 @@ function update() {
     }
     
     
-    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+   
 }
 //# sourceMappingURL=app.js.map
