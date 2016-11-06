@@ -42,11 +42,7 @@ function create() {
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
-    function collectStar(player, star) {
-        star.kill();
-        score += 10;
-        scoreText.text = 'Score: ' + score;
-    }
+   
      scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 }
 
@@ -79,6 +75,10 @@ function update() {
     
     game.physics.arcade.collide(stars, platforms);
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
-   
+    function collectStar(player, star) {
+        star.kill();
+        score += 10;
+        scoreText.text = 'Score: ' + score;
+    }
 }
 //# sourceMappingURL=app.js.map
