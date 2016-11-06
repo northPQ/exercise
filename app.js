@@ -6,8 +6,8 @@ function preload() {
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 }
 var player;
+var platforms;
 function create() {
-   var platforms;
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.add.sprite(0, 0, 'sky');
     platforms = game.add.group();
